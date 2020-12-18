@@ -6,6 +6,9 @@ import shelve
 from random import shuffle
 from avalon import *
 #from wordgame import *
+from os import getenv
+from dotenv import load_dotenv
+load_dotenv()
 
 client = discord.Client()
 busyChannels = []
@@ -43,7 +46,7 @@ async def on_message(message):
 	#	await scoreboard(client, message)
 
 	if message.content.startswith('!help'):
-		await message.channel.send('no help for you')
+		await message.channel.send('Please visit https://cameronleong.github.io/avalon to find out more.')
 		
 		
 @client.event
@@ -53,5 +56,5 @@ async def on_ready():
 	print('ID: ' + str(client.user.id))
 	await client.change_presence(activity=game)
 	
-
-client.run('YOUR TOKEN HERE')
+TOKEN = getenv("TOKEN")
+client.run(TOKEN)
